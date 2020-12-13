@@ -1,0 +1,242 @@
+
+== Définition de votre graphe de connaissances ==
+
+=== Vocabulaire ===
+
+==== Base ====
+<rdf>
+BASE <https://data.escr.fr/wiki/Utilisateur:Stan/Projet#>
+</rdf>
+
+==== Préfixes ====
+<rdf>
+PREFIX ex: <http://www.example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+</rdf>
+
+==== Classes ====
+
+===== Ingredient =====
+<rdf>
+<Ingredient> rdf:type rdfs:class.
+</rdf>
+
+===== Baguette =====
+<rdf>
+<Baguette> rdf:type rdfs:class.
+</rdf>
+
+===== Boulangerie =====
+<rdf>
+<Boulangerie> rdf:type rdfs:class.
+</rdf>
+
+==== Propriétés ====
+
+===== Ingredient Name =====
+<rdf>
+<ingredientName> rdf:type rdf:Property;
+    rdfs:domain <Ingredient>.
+</rdf>
+
+===== Ingredient Calorie =====
+<rdf>
+<ingredientCalorie> rdf:type rdf:Property;
+    rdfs:domain <Ingredient>.
+</rdf>
+
+
+===== Baguette Name =====
+<rdf>
+<baguetteName> rdf:type rdf:Property;
+    rdfs:domain <Baguette>.
+</rdf>
+
+===== Baguette Calorie =====
+<rdf>
+<baguettePrice> rdf:type rdf:Property;
+    rdfs:domain <Baguette>.
+</rdf>
+
+===== Baguette Ingredient =====
+<rdf>
+<baguetteIngredients> rdf:type rdf:Property;
+    rdfs:domain <Baguette>;
+        rdfs:range <Ingredient>.
+</rdf>
+
+===== Boulangerie Name =====
+<rdf>
+<boulangerieName> rdf:type rdf:Property;
+    rdfs:domain <Boulangerie>.
+</rdf>
+
+===== Boulangerie  contain baguettes =====
+<rdf>
+<boulangerieBaguette> rdf:type rdf:Property;
+rdfs:domain <Boulangerie>;
+rdfs:range <Baguette>.
+</rdf>
+
+==== Data Exemple ====
+
+===== ingredients =====
+<rdf>
+ex:farine_seigle rdf:type <Ingredient> .
+ex:farine_seigle <ingredientName> "Farine de seigle" .
+ex:farine_seigle <ingredientCalorie> "30"^^xsd:double .
+</rdf>
+
+<rdf>
+ex:farine_ble rdf:type <Ingredient> .
+ex:farine_ble <ingredientName> "Farine de Blé" .
+ex:farine_ble <ingredientCalorie> "20"^^xsd:double .
+</rdf>
+
+<rdf>
+ex:graine_melange rdf:type <Ingredient> .
+ex:graine_melange <ingredientName> "Mélange de Graines" .
+ex:graine_melange <ingredientCalorie> "10"^^xsd:double .
+</rdf>
+
+<rdf>
+ex:piments_poudre rdf:type <Ingredient> .
+ex:piments_poudre <ingredientName> "Piments en pouvre" .
+ex:piments_poudre <ingredientCalorie> "50"^^xsd:double .
+</rdf>
+
+<rdf>
+ex:pepite_chocolat rdf:type <Ingredient> .
+ex:pepite_chocolat <ingredientName> "Pepite de chocolat" .
+ex:pepite_chocolat <ingredientCalorie> "90"^^xsd:double .
+</rdf>
+
+===== baguette =====
+<rdf>
+ex:baguette_seigle rdf:type <Baguette> .
+ex:baguette_seigle <baguetteName> "Baguette de seigle" .
+ex:baguette_seigle <baguettePrice> "1"^^xsd:double .
+ex:baguette_seigle ex:baguetteIngredients ex:farine_seigle .
+ex:baguette_seigle ex:baguetteIngredients ex:graine_melange .
+</rdf>
+
+<rdf>
+ex:baguette_bio rdf:type <Baguette> .
+ex:baguette_bio <baguetteName> "Pain Bio" .
+ex:baguette_bio <baguettePrice> "2"^^xsd:double .
+ex:baguette_bio ex:baguetteIngredients ex:farine_ble .
+</rdf>
+
+<rdf>
+ex:baguette_piments rdf:type <Baguette> .
+ex:baguette_piments <baguetteName> "Pain Piments" .
+ex:baguette_piments <baguettePrice> "3"^^xsd:double .
+ex:baguette_piments ex:baguetteIngredients ex:farine_ble .
+ex:baguette_piments ex:baguetteIngredients ex:graine_melange .
+ex:baguette_piments ex:baguetteIngredients ex:piments_poudre .
+</rdf>
+
+<rdf>
+ex:pain_complet rdf:type <Baguette> .
+ex:pain_complet <baguetteName> "Pain Complet" .
+ex:pain_complet <baguettePrice> "8"^^xsd:double .
+ex:pain_complet ex:baguetteIngredients ex:farine_ble .
+ex:pain_complet ex:baguetteIngredients ex:farine_seigle .
+ex:pain_complet ex:baguetteIngredients ex:piments_poudre .
+ex:pain_complet ex:baguetteIngredients ex:graine_melange .
+</rdf>
+
+<rdf>
+ex:pain_chocolat rdf:type <Baguette> .
+ex:pain_chocolat <baguetteName> "Pain au chocolat" .
+ex:pain_chocolat <baguettePrice> "5"^^xsd:double .
+ex:pain_chocolat ex:baguetteIngredients ex:farine_ble .
+ex:pain_chocolat ex:baguetteIngredients ex:pepite_chocolat .
+</rdf>
+
+
+===== boulangerie =====
+<rdf>
+ex:boulangerie_gagny_1 rdf:type <Boulangerie> .
+ex:boulangerie_gagny_1 <boulangerieName> "Boulangerie 1" .
+ex:boulangerie_gagny_1 ex:boulangerieBaguette ex:baguette_bio .
+</rdf>
+
+<rdf>
+ex:boulangerie_gagny_2 rdf:type <Boulangerie> .
+ex:boulangerie_gagny_2 <boulangerieName> "Boulangerie 2" .
+ex:boulangerie_gagny_2 ex:boulangerieBaguette ex:baguette_piments .
+</rdf>
+
+<rdf>
+ex:boulangerie_gagny_3 rdf:type <Boulangerie> .
+ex:boulangerie_gagny_3 <boulangerieName> "Boulangerie 3" .
+ex:boulangerie_gagny_3 ex:boulangerieBaguette ex:baguette_piments .
+ex:boulangerie_gagny_3 ex:boulangerieBaguette ex:baguette_seigle .
+</rdf>
+<rdf>
+ex:boulangerie_gagny_4 rdf:type <Boulangerie> .
+ex:boulangerie_gagny_4 <boulangerieName> "Boulangerie 4" .
+ex:boulangerie_gagny_4 ex:boulangerieBaguette ex:baguette_piments .
+ex:boulangerie_gagny_4 ex:boulangerieBaguette ex:baguette_seigle .
+ex:boulangerie_gagny_4 ex:boulangerieBaguette ex:baguette_bio .
+ex:boulangerie_gagny_4 ex:boulangerieBaguette ex:pain_chocolat  .
+ex:boulangerie_gagny_4 ex:boulangerieBaguette ex:pain_complet  .
+</rdf>
+=== Requêtes ===
+
+{{#sparql:
+BASE <https://data.escr.fr/wiki/Utilisateur:Stan/Projet#>
+SELECT * 
+WHERE {
+?s a <Ingredient> .
+}
+}}
+
+
+
+
+{{#sparql:
+BASE <https://data.escr.fr/wiki/Utilisateur:Stan/Projet#>
+SELECT * 
+WHERE {
+?s a <Boulangerie> .
+}
+}}
+
+{{#sparql:
+BASE <https://data.escr.fr/wiki/Utilisateur:Stan/Projet#>
+SELECT * 
+WHERE {
+?s a <Baguette> .
+}
+}}
+
+{{#sparql:
+BASE <https://data.escr.fr/wiki/Utilisateur:Stan/Projet#>
+PREFIX ex: <http://www.example.org/>
+SELECT *
+WHERE {
+  ex:boulangerie_gagny_1 ?p ?v .
+}
+}}
+
+{{#sparql:
+BASE <https://data.escr.fr/wiki/Utilisateur:Stan/Projet#>
+PREFIX ex: <http://www.example.org/>
+SELECT *
+WHERE {
+  ex:boulangerie_gagny_3 ?p ?v .
+}
+}}
+
+{{#sparql:
+BASE <https://data.escr.fr/wiki/Utilisateur:Stan/Projet#>
+PREFIX ex: <http://www.example.org/>
+SELECT *
+WHERE {
+  ex:baguette_piments ?p ?v .
+}
+}}
