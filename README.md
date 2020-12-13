@@ -12,4 +12,4 @@
 
 * load.js : Charge les données
 * display.js : Affiche les données
-* escr_content.rdf : Page présente sur data escr
+* escr_content.rdf : sauvegarde de e présente sur data escr
