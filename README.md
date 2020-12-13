@@ -8,7 +8,7 @@
 * 1 : Cloner le projet
 * 2 : Lancer dans un navigateur main.html
 
-<p>Data Source : #https://data.escr.fr/wiki/Utilisateur:Stan/Projet</p>
+<p>Data Source : https://data.escr.fr/wiki/Utilisateur:Stan/Projet</p>
 
 * load.js : Charge les données
 * display.js : Affiche les données
